@@ -2,19 +2,31 @@
 # open fonts.
 
 FROM ubuntu:latest
-MAINTAINER Kyle Mathews "mathews.kyle@gmail.com"
 
 RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ precise universe" >> /etc/apt/sources.list
-RUN apt-get -y update; apt-get -y upgrade
+RUN apt-get update && \
+  apt-get install --yes --no-install-recommends \
+  make \
+  git \
+  openssh-client \
+  ca-certificates \
+  lmodern \
+  texlive-full \
+  python3-pip \
+  fonts-font-awesome \
+  awscli && \
+  curl && \ 
+  wget
 
-# Install all Google Web Fonts
-RUN apt-get install -y mercurial fontconfig
-RUN hg clone https://googlefontdirectory.googlecode.com/hg/ fonts
-RUN mkdir -p /usr/share/fonts/truetype/google-fonts/
-RUN find $PWD/fonts/ -name "*.ttf" -exec install -m644 {} /usr/share/fonts/truetype/google-fonts/ \; || return 1
-RUN fc-cache -f -v
+# Install the Dropbox-Uploader package which includes the Dropbox-uploader executable.
+RUN git clone clone https://github.com/andreafabrizi/Dropbox-Uploader.git
+RUN cd ./Dropbox-Uploader
+RUN touch ./.dropbox_uploader
+RUN chmod +x dropbox_uploader.sh
 
-# Install the texlive-xetex package which includes the Xelatex executable.
-RUN apt-get install -y git wget lsb-release
-RUN git clone https://github.com/scottkosty/install-tl-ubuntu.git
-RUN cd install-tl-ubuntu; ./install-tl-ubuntu
+RUN  apt-get autoclean && apt-get --purge --yes autoremove && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Export the output data
+WORKDIR /Dropbox-Uploader
+VOLUME ["/Dropbox-Uploader"]

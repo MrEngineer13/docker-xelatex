@@ -3,7 +3,6 @@
 
 FROM ubuntu:latest
 
-RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ precise universe" >> /etc/apt/sources.list
 RUN apt-get update && \
   apt-get install --yes --no-install-recommends \
   make \

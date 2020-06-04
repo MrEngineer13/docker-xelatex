@@ -21,9 +21,9 @@ RUN apt-get update && \
   texlive-full \
   python3-pip \
   fonts-font-awesome \
-  awscli && \
-  curl && \ 
-  wget
+  curl \
+  wget \
+  awscli
 
 # Install the Dropbox-Uploader package which includes the Dropbox-uploader executable.
 RUN git clone clone https://github.com/andreafabrizi/Dropbox-Uploader.git

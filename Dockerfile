@@ -26,7 +26,7 @@ RUN apt-get update && \
   awscli
 
 # Install the Dropbox-Uploader package which includes the Dropbox-uploader executable.
-RUN git clone clone https://github.com/andreafabrizi/Dropbox-Uploader.git
+RUN git clone https://github.com/andreafabrizi/Dropbox-Uploader.git
 RUN cd ./Dropbox-Uploader
 RUN touch ./.dropbox_uploader
 RUN chmod +x dropbox_uploader.sh

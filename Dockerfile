@@ -28,6 +28,7 @@ RUN apt-get update && \
 # Install the Dropbox-Uploader package which includes the Dropbox-uploader executable.
 RUN git clone https://github.com/andreafabrizi/Dropbox-Uploader.git
 RUN cd ./Dropbox-Uploader
+RUN ls -l
 RUN touch ./.dropbox_uploader
 RUN ls -l
 RUN chmod +x ./dropbox_uploader.sh

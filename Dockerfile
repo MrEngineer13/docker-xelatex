@@ -29,7 +29,6 @@ RUN apt-get update && \
 RUN git clone https://github.com/andreafabrizi/Dropbox-Uploader.git
 WORKDIR ./Dropbox-Uploader
 RUN touch ./.dropbox_uploader
-RUN ls
 RUN chmod +x ./dropbox_uploader.sh
 
 RUN  apt-get autoclean && apt-get --purge --yes autoremove && \
